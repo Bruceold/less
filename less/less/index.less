@@ -1,0 +1,367 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+
+//布局样式
+#layout(@name){
+	position: relative;
+	& when(@name=header){
+		height: 60px;
+		#bg-color(black);
+	}
+	& when(@name=banner){
+		height: 560px;
+		background-color: #6a6593;
+	}
+	& when(@name=courses){
+		height: 880px;
+		#bg-color(pale);
+	}
+	& when(@name=footer){
+		height: 98px;
+		#bg-color(black);
+	}
+}
+// 功能样式
+#bg-color(@name){
+	& when(@name=black){
+		background-color: #000;
+	}
+	& when(@name=white){
+		background-color: #fff;
+	}
+	& when(@name=pale){
+		background-color: #f3f5f7;
+	}
+	& when(@name=night){
+		background-color: #4d555d;
+	}
+	& when(@name=dark){
+		background-color: #2b333b;
+	}
+	& when(@name=light){
+		background-color: #363c41;
+	}
+}
+#ft-size(@name){
+	& when(@name=small){
+		font-size: 12px;
+	}
+	& when(@name=medium){
+		font-size: 14px;
+	}
+	& when(@name=lager){
+		font-size: 16px;
+	}
+	& when(@name=title){
+		font-size: 32px;
+	}
+	& when(@name=big){
+		font-size: 22px;
+	}
+}
+#color(@name){
+	& when(@name=dark){
+		color: #5c646d;
+	}
+	& when(@name=black){
+		color: #141914;
+	}
+	& when(@name=white){
+		color: #fbfbfb;
+	}
+	& when(@name=yellow){
+		color: #ffcc33;
+	}
+	& when(@name=red){
+		color: red;
+	}
+	& when(@name=weak){
+		color: #959aa0;
+	}
+}
+#radius(@radius:50%){
+	border-radius: @radius;
+}
+#bg-img(@src){
+	background-image: url('../imgs/@{src}');
+}
+#square(@w:10px){
+	width: @w;
+	height: @w;
+}
+#line-height(@h){
+	height: @h;
+	line-height: @h;
+}
+// 通用样式
+.fl(){
+	float: left;
+}
+.fr(){
+	float: right;
+}
+.clearfix(){
+	&::after{
+		content: '';
+		display: block;
+		font-size: 0;
+		line-height: 0;
+		clear: both;
+		zoom: 1;
+	}
+}
+// 课程模块样式定义
+#course-box(){
+		width: 224px;
+		height: 256px;
+		float: left;
+		margin: 0 20px 34px 0;
+		box-shadow: 0 4px 8px rgba(7, 17, 27, .1);
+		position: relative;
+		#bg-color(white);
+		#bg-img("course-s-bg.png");
+		#decorate-bottom();
+}
+#decorate-bottom(){
+	&::before{
+		content: ' ';
+		display: block;
+		width: 98%;
+		height: 3px;
+		left: 1%;
+		bottom: -5px;
+		position: absolute;
+		box-shadow: 0 8px 16px rgba(7, 17, 27, .2);
+		#radius(4px);
+		#bg-color(white);
+	}
+	&::after{
+		content: ' ';
+		display: block;
+		width: 96%;
+		height: 3px;
+		left: 2%;
+		bottom: -11px;
+		position: absolute;
+		box-shadow: 0 8px 16px rgba(7, 17, 27, .2);
+		#radius(4px);
+		#bg-color(white);
+
+	}
+}
+//模块样式 
+header{
+	#layout(header);
+	.logo{
+		.fl();
+		width: 128px;
+        height: 36px;
+        padding: 12px 25px;
+	}
+	.nav{
+		.fl();
+		#line-height(60px);
+		&__item{
+			display: block;
+			.fl();
+			padding: 0 25px;
+			#ft-size(medium);
+			#color(white);
+			&:hover{
+				#bg-color(light);
+			}
+		}
+	}
+	.profile{
+		.fr();
+		&__item{
+			display: block;
+			.fl();
+			width: 22px;
+			height: 22px;
+			margin: 19px 12px;
+			#bg-img("icon-1-sprite_w23.png");
+			background-repeat: no-repeat;
+			
+		}
+		&__shopping{
+			background-position: 0 -66px;
+			&:hover{
+				#bg-img("icon-1-sprite_w22.png");
+			}
+
+		}
+		&__bell{
+			background-position: 0 -22px;
+			&:hover{
+				#bg-img("icon-1-sprite_w22.png");
+			}
+		}
+		&__ava{
+		    width: 36px;
+		    height: 36px;
+			#radius();
+			margin: 12px 25px 0 12px;
+			#bg-img("ava.jpg");
+		}
+
+	}
+	.search{
+		.fr();
+		position: relative;
+		height: 36px;
+		margin: 12px 25px;
+		padding-right: 25px;
+		&-input{
+			width: 242px;
+			#line-height(36px);
+			padding: 0 0 0 72px;
+			border: none;
+		    outline: none;
+			border-bottom: 1px solid #ccc;
+			#color(white);
+			background-color: #000;
+			}
+		&::before{
+			content: '前端入门';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 72px;
+			#line-height(30px);
+			text-align: center;
+			#ft-size(small);
+			#color(dark);
+			#bg-color(dark);	
+		}
+		.submit{
+			display: block;
+			position: absolute;
+			top: 4px;
+			right: 25px;
+			#square(22px);
+			#bg-img("icon-1-sprite_w22.png");
+			background-position: 0 0;
+		}
+	}
+
+}
+.banner{
+	#layout(banner);
+	width: 100%;
+	#bg-img("bg.jpg");
+}
+.course{
+	#layout(courses);
+	&__list{
+		width: 1000px;
+		margin: 0 auto;
+		.clearfix();
+		.standard-course{
+			top: -140px;
+			#course-box();
+			overflow: hidden;
+			&__plan{
+				position: absolute;
+				top: 100px;
+                width: 184px;
+                padding: 16px 20px 0 20px;
+                #bg-img("titlebg.png");
+                transition: all 1s;
+                &:hover{
+                	top: 70px;
+                }
+			}
+			&__cover{
+				height: 100px;
+				img{
+					width: 100%
+				}
+			}
+			&__caption{
+			   #line-height(18px);
+               #ft-size(medium);
+               font-weight: bold;
+            }
+            &__times{
+            	padding-top: 30px;
+            	#ft-size(34px);
+            	#ft-size(small);
+            	#color(weak);
+            }
+            &__person{
+            	.fr();
+            }
+            &__price{
+            	position: absolute;
+            	bottom: 0;
+            	#line-height(30px);
+            	padding: 12px 20px;
+            	#ft-size(small);
+            	#color(red);
+            	i{
+            		font-style: normal;
+            		padding: 0 3px;
+            		vertical-align: super;
+            	}
+            }
+		}
+	}
+}
+.footer{
+	/* margin-top: 60px; */
+	#layout(footer);
+	#ft-size(small);
+	.footer-link{
+		width: 1200px;
+		margin: 0 auto;
+		#line-height(12px);
+		padding: 30px 0 16px 40px;
+		&__item{
+			display: inline-block;
+			margin-right: 30px;
+			#color(weak);
+			.fl();
+			&:hover{
+				#color(white);
+			}
+		}
+	}
+	.footer-copy{
+		width: 1200px;
+		margin: 0 auto;
+		#line-height(12px);
+		padding: 0 0 0 40px;
+		#color(weak);
+	}
+	.footer-share{
+		position: absolute;
+		width: 135px;
+		height: 32px;
+		top: 34px;
+		right: 40px;
+		&__item{
+			display: block;
+			margin-left: 13px;
+			.fl();
+			#square(32px);
+			#bg-img("footer-sprite.png");
+			&_i_1{
+				background-position: 0 -279px;
+			}
+			&_i_2{
+				background-position: 0 -321px;
+			}
+			&_i_3{
+				background-position: 0 -363px;
+			}
+		}
+	}
+
+}
